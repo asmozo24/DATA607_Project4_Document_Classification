@@ -1,0 +1,105 @@
+---
+title: "DATA607_Project4_Document_Classification"
+author: "Alexis Mekueko"
+date: "11/14/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## R Packages
+
+```{r load-packages, message=FALSE}
+#loading all library needed for this assignment
+# this library are already in my Local downloaded_packages if not, I can install each
+# install.packages("rtweet")
+library(tidyverse) 
+library(DT)
+library(knitr)
+
+#library(plyr)
+library(XML)
+library(RCurl)
+library(jsonlite)
+library(httr)
+library(tidytext)
+library(tidyr)
+library(janeaustenr)
+library(textdata) # https://rdrr.io/cran/textdata/f/README.md
+get_sentiments("afinn") #general purpose lexions from Finn Arup Nielsen, AFINN is a lexicon of English words rated for valence with an integer between minus five (negative) and plus five (positive). 
+library(wordcloud)
+library(tm)
+library(reshape2)
+library(syuzhet)
+library(rtweet)
+library(corpus)
+library(class)
+library(kableExtra)
+library(caret)
+library(party)
+#ibrary(DBI)
+#library(dbplyr)
+
+# library(rstudioapi)
+# library(RJDBC)
+# library(odbc)
+# library(RSQLite)
+# #library(rvest)
+
+library(readr)
+#library(ggpubr)
+#library(fitdistrplus)
+#library(ggplot2)
+#library(moments)
+#library(qualityTools)
+#library(normalp)
+#library(utils)
+#library(MASS)
+#library(qqplotr)
+#library(DATA606)
+
+```
+
+# Description 
+This assignment of week 12 is about document classification. Last assignment was on sentiment analysis which corellates with classification as it is all about text analysis. This is machine learning where it can be useful to be able to classify new "test" documents using already classified "training" documents.  A common example is using a corpus of labeled spam and ham (non-spam) e-mails to predict whether or not a new document is spam.  
+
+For this project, you can start with a spam/ham dataset, then predict the class of new documents (either withheld from the training dataset or from another source such as your own spam folder).   One example corpus:   https://spamassassin.apache.org/old/publiccorpus/
+
+Here are few short videos that you may find helpful.
+
+# Approach
+
+We will first download 02 zip files easy_ham and spam.tar to local directory, then upload them to Rstudio. Since these files are zipped .tar.bze, we will perform manual and automatic unzip the data files. We will create the corpus for spam and ham. We will proceed to:
+Predict the class of new documents withheldfrom the example corpus
+Use the dictionary of common words
+Separate the message header from the message body
+Analyze these documents to predict how new documents should be classified
+
+
+
+# Reading the data
+```{r }
+
+#Using party package to read the tar.bz2 which automatically unzipped the tar file
+#create a df
+hamSpam_df <- c(X20021010_easy_ham_tar, '20021010_spam.tar')
+view(hamSpam_df)
+str(hamSpam_df)
+
+# Another way is to use 7-zip to manually unzip the tar file and read it from github repo or local drive
+# We can also build a script to import tar file from original source and manually unpack the file 
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
